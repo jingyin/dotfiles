@@ -5,3 +5,9 @@ syntax on
 set hlsearch
 set incsearch
 set noswapfile
+
+filetype off
+filetype plugin indent off
+set runtimepath+=$GOROOT/misc/vim
+filetype plugin indent on
+syntax on
