@@ -5,6 +5,7 @@ syntax on
 set hlsearch
 set incsearch
 set noswapfile
+set background=dark
 
 filetype off
 filetype plugin indent off
