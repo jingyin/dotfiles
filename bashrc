@@ -9,7 +9,7 @@ set -o vi
 
 export GOROOT=/usr/lib/go
 export GOPATH=$HOME/golang/bin
-export PATH=$PATH:$GOPATH:$HOME/.cabal/bin
+export PATH=$PATH:$GOPATH:$HOME/.cabal/bin:$HOME/Downloads/sbt/bin
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
