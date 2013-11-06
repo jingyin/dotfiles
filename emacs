@@ -23,3 +23,5 @@
 ;; Use S-SPC to toggle input status
 (ibus-define-common-key ?\S-\s nil)
 (global-set-key (kbd "s-SPC") 'ibus-toggle)
+
+(setq make-backup-files nil)
