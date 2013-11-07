@@ -32,12 +32,17 @@
       (ibus-define-common-key ?\S-\s nil)
       (global-set-key (kbd "s-SPC") 'ibus-toggle)))
 
+(require 'package)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+(package-initialize)
+
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
 (setq command-line-default-directory "~/")
 
-(add-hook 'java-mode-hook '(lambda ()
-  (local-set-key (kbd "RET") 'newline-and-indent)))
+(define-key global-map (kbd "RET") 'newline-and-indent)
 
 (dolist (command '(yank yank-pop))
   (eval `(defadvice ,command (after indent-region activate)
