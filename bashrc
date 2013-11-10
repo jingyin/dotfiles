@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-set -o vi
+set -o emacs
 
 export GOROOT=/usr/lib/go
 export GOPATH=$HOME/golang/bin
