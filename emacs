@@ -46,6 +46,7 @@
 
 (require 'quack)
 (setq geiser-repl-use-other-window nil)
+(show-paren-mode 1)
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
