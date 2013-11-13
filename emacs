@@ -15,6 +15,7 @@
 
 (if (system-is-mac)
     (progn
+      (setq geiser-racket-binary "/Applications/Racket v5.3.6/bin/racket")
       (setq ns-command-modifier 'meta)))
 
 (if (system-is-linux)
