@@ -16,7 +16,7 @@
 (if (system-is-mac)
     (progn
       (setq geiser-racket-binary "/Applications/Racket v5.3.6/bin/racket")
-      (setq ns-command-modifier 'meta)))
+      (setq ns-command-modfier 'meta)))
 
 (if (system-is-linux)
     (progn
@@ -52,7 +52,6 @@
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
-(setq command-line-default-directory "~/")
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
