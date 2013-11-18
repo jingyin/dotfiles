@@ -51,6 +51,7 @@
 (setq show-paren-delay 0)
 
 (setq-default indent-tabs-mode nil)
+(setq auto-savedefault nil)
 (setq tab-width 4)
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
