@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(show-paren-mode t))
 
 (defun system-is-mac ()
   (interactive)
@@ -53,6 +53,8 @@
 (setq-default indent-tabs-mode nil)
 (setq auto-savedefault nil)
 (setq tab-width 4)
+(global-linum-mode t)
+(global-visual-line-mode t)
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
@@ -70,3 +72,9 @@
 		  (indent-region (region-beginning) (region-end) nil))))))
 
 (setq make-backup-files nil)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Ubuntu Mono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
