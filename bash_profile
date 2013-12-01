@@ -11,3 +11,6 @@ if [[ $OSTYPE == darwin* ]]; then
     export CLICOLOR=1
     export LSCOLORS=GxFxCxDxBxegedabagaced
 fi
+
+# OPAM configuration
+. /home/jin/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
