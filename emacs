@@ -54,8 +54,9 @@
 (setq backup-inhibited nil)
 (setq auto-savedefault nil)
 (setq tab-width 4)
-(global-linum-mode t)
-(global-visual-line-mode t)
+(global-linum-mode)
+(global-visual-line-mode)
+(global-rainbow-delimiters-mode)
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
@@ -74,3 +75,6 @@
 
 (setq make-backup-files nil)
 
+(autoload 'enable-paredit-mode "paredit"
+  "Turn on pseudo-structural editing of Lisp code."
+  t)
