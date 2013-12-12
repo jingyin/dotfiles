@@ -7,5 +7,6 @@ ln -s -f $HOME/dotfiles/bash_profile $HOME/.bash_profile
 ln -s -f $HOME/dotfiles/sbtconfig $HOME/.sbtconfig
 ln -s -f $HOME/dotfiles/emacs $HOME/.emacs
 ln -s -f $HOME/dotfiles/Xresources $HOME/.Xresources
+ln -s -f $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
 
 source $HOME/.bashrc
