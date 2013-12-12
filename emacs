@@ -100,6 +100,7 @@
 
 ;; -- opam and utop setup --------------------------------
 ;; Setup environment variables using opam
+(require 'cl)
 (defun opam-vars ()
   (let* ((x (shell-command-to-string "opam config env"))
 	 (x (split-string x "\n"))
