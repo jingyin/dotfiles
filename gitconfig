@@ -2,6 +2,13 @@
 	name = Jingyi Ni
 	email = colonel.ni.jingyi@gmail.com
 [core]
-	editor = vim
+	editor = emacs -nw
 [push]
 	default = simple
+[alias]
+        df = diff HEAD
+        st = status
+        ci = commit
+        br = branch
+        co = checkout
+        rbi = rebase -i
