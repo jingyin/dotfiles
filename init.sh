@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 
-ln -s -f $HOME/dotfiles/vimrc $HOME/.vimrc 
-ln -s -f $HOME/dotfiles/bashrc $HOME/.bashrc 
-ln -s -f $HOME/dotfiles/gitconfig $HOME/.gitconfig
-ln -s -f $HOME/dotfiles/bash_profile $HOME/.bash_profile
-ln -s -f $HOME/dotfiles/sbtconfig $HOME/.sbtconfig
-ln -s -f $HOME/dotfiles/emacs $HOME/.emacs
-ln -s -f $HOME/dotfiles/Xresources $HOME/.Xresources
-ln -s -f $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
-
-source $HOME/.bashrc
+script_dir=$(readlink -e $(dirname ${BASH_SOURCE[0]}))
+echo ${script_dir}
+ln -sf ${script_dir}/vimrc $HOME/.vimrc 
+ln -sf ${script_dir}/gitconfig $HOME/.gitconfig
+ln -sf ${script_dir}/sbtconfig $HOME/.sbtconfig
+ln -sf ${script_dir}/emacs $HOME/.emacs
+ln -sf ${script_dir}/Xresources $HOME/.Xresources
+ln -sf ${script_dir}/tmux.conf $HOME/.tmux.conf
