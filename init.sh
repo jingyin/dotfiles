@@ -8,3 +8,4 @@ ln -sf ${script_dir}/sbtconfig $HOME/.sbtconfig
 ln -sf ${script_dir}/emacs $HOME/.emacs
 ln -sf ${script_dir}/Xresources $HOME/.Xresources
 ln -sf ${script_dir}/tmux.conf $HOME/.tmux.conf
+ln -sf ${script_dir}/globalrc $HOME/.globalrc
