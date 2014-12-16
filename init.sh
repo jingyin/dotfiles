@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-script_dir=$(readlink -e $(dirname ${BASH_SOURCE[0]}))
+script_dir=$(greadlink -e $(dirname ${BASH_SOURCE[0]}))
 echo ${script_dir}
 ln -sf ${script_dir}/vimrc $HOME/.vimrc 
 ln -sf ${script_dir}/gitconfig $HOME/.gitconfig
