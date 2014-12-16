@@ -3,6 +3,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
+ '(custom-enabled-themes (quote (tsdh-dark)))
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote cabal-repl))
+ '(haskell-tags-on-save t)
  '(show-paren-mode t))
 
 (defun system-is-mac ()
@@ -20,9 +30,12 @@
 
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
+
+;; (require 'rainbow-delimiters)
+;; (global-rainbow-delimiters-mode)
 
 (require 'quack)
 (setq geiser-repl-use-other-window nil)
@@ -35,7 +48,6 @@
 (setq tab-width 4)
 (global-linum-mode)
 (global-visual-line-mode)
-(global-rainbow-delimiters-mode)
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
@@ -53,40 +65,43 @@
                                                      c++-mode
                                                      objc-mode
                                                      latex-mode
-                                                     rust-mode
                                                      plain-tex-mode))
                 (let ((mark-even-if-inactive transient-mark-mode))
                   (indent-region (region-beginning) (region-end) nil))))))
 
 (setq make-backup-files nil)
 
-(autoload 'enable-paredit-mode "paredit"
-  "Turn on pseudo-structural editing of Lisp code."
-  t)
+(eval-after-load 'haskell-mode
+  '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
+(let ((my-cabal-path (expand-file-name "~/Library/Haskell/bin"))
+      (sys-cabal-path (expand-file-name "/Library/Haskell/bin")))
+  (setenv "PATH" (concat my-cabal-path ":" sys-cabal-path ":" (getenv "PATH")))
+  (add-to-list 'exec-path my-cabal-path))
+(require 'shm)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
-(require 'cc-mode)
-(setq-default c-basic-offset 4 c-default-style "linux")
-(define-key c-mode-base-map (kbd "RET") 'newline-and-indent)
-(require 'autopair)
-(autopair-global-mode 1)
-(setq autopair-autowrap t)
-(require 'auto-complete-clang)
-(define-key c++-mode-map (kbd "M-S-<return>") 'ac-complete-clang)
-(require 'ecb)
-(require 'ecb-autoloads)
-(setq ecb-layout-name "left1")
-(setq ecb-show-sources-in-directories-buffer 'always)
-(setq ecb-compile-window-height 12)
 
-(require 'rust-mode)
-(require 'flymake-rust)
-(add-hook 'rust-mode-hook 'flymake-rust-load)
-(add-hook 'prog-mode-hook
-          '(lambda ()
-             (when (derived-mode-p 'rust-mode) 
-               (ggtags-mode 1))))
-(add-hook 'prog-mode-hook
-          '(lambda ()
-             (when (derived-mode-p 'rust-mode)
-               (define-key ggtags-mode-map (kbd "M-]") 'ggtags-grep)
-               )))
+(eval-after-load 'haskell-mode '(progn
+                                  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+                                  (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+                                  (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
+                                  (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
+                                  (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
+                                  (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
+                                  (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)))
+(eval-after-load 'haskell-cabal '(progn
+                                   (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+                                   (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+                                   (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+                                   (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
+
+(eval-after-load 'haskell-mode
+  '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
+(eval-after-load 'haskell-cabal
+  '(define-key haskell-cabal-mode-map (kbd "C-c C-o") 'haskell-compile))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
